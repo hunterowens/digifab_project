@@ -18,4 +18,5 @@ void loop() {
   }
   else {
     digitalWrite(lightPin, LOW); // set it to low if greater than 24
+  }
 }
