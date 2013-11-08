@@ -10,8 +10,7 @@ void setup() {
 }
 
 void loop() {
-  inchesAway = analogRead(sonarPin) /2; // read the input
-
+  inchesAway = analogRead(sonarPin) / 2; // read the input
   // Loop that writes value, in inches, to output stream
   if (inchesAway > 0) {
     Serial.println(inchesAway);
@@ -24,5 +23,6 @@ void loop() {
   else {
     digitalWrite(lightPin, LOW); // set it to low if greater than 24
   }
+  delay(1000);
 }
   

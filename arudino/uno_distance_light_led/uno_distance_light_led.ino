@@ -7,6 +7,7 @@ int inchesAway;
 
 void setup() {
   pinMode(lightPin, OUTPUT);
+  digitalWrite(lightPin,HIGH);
 
 }
 
