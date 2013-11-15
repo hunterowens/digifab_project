@@ -24,4 +24,5 @@ void loop() {
   else {
     digitalWrite(ledPin,LOW);
   }
+  Serial.println(inches);
 }
