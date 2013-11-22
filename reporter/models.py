@@ -2,7 +2,6 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import *
 from sqlalchemy.types import DateTime
-import uuid
 import argparse
 import os
 
@@ -15,14 +14,20 @@ db_db = os.environ.get("FABDB_DB")
 
 engine = create_engine("postgresql://"+db_user+":"+db_pw+"@"+db_url+"/"+db_db)
 
+SessionMkr = sessionmaker()
+SessionMkr.configure(bind=engine)
+session = SessionMkr()
+
 class UltraSonicReading(Base):
 	__tablename__ = 'ultrasonic'
 	id = Column(Integer, primary_key=True,autoincrement=True)
 	room = Column(String(255))
 	location = Column(String(255))
 	timestamp = Column(DateTime)
-	value = Column(Integer)
-	default_value = Column(Integer)
+	reading_30 = Column(Integer)
+	reading_70 = Column(Integer)
+	reading_110 = Column(Integer)
+	reading_150 = Column(Integer)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
