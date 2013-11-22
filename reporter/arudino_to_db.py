@@ -10,3 +10,14 @@ while True:
 	except serial.serialutil.SerialException:
 		time.sleep(1)
 
+
+
+def parse_input(i):
+	args = i.split()
+	for arg in args:
+		int(arg)
+	print args
+
+
+if __name__ == '__main__':
+	parse_input("3,5,67,24")
