@@ -3,15 +3,15 @@
 // Author: Hunter Owens
 // Date: 24/11/2013
 
-const int pin30  = 1;
-const int pin70  = 2;
-const int pin110 = 3;
-const int pin150 = 4;
+const unsigned int pin30  = 1;
+const unsigned int pin70  = 2;
+const unsigned int pin110 = 3;
+const unsigned int pin150 = 4;
 
 //converts the reading into a cm value representing how far away the nearest
 // obj is 
-long convert(int val) {
-  long res;
+unsigned long convert(int val) {
+  unsigned long res;
   res = (val / 147) * 2.54;
   return res;
 }
@@ -23,8 +23,8 @@ void setup() {
 
 void loop() {
   // res vars
-  int reading30,reading70,reading110,reading150;
-  long res30,res70,res110,res150;
+  unsigned int reading30,reading70,reading110,reading150;
+  unsigned long res30,res70,res110,res150;
   //set up the pins for input
   pinMode(pin30, INPUT);
   pinMode(pin70, INPUT);
