@@ -79,5 +79,12 @@ while True:
  	except serial.serialutil.SerialException:
  	 	logging.warning("Arudino Failed to Report Data")
  	 	pass
- 	else:
+ 	except IndexError:
+		logging.warning("Bad Input Error")
+		pass
+	except sqlalchemy.exc.*:
+		logging.warning("SQL Alchemy Error")
+		pass
+	else:
  		logging.info(sys.exc_info()[0])
+		pass
