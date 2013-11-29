@@ -82,9 +82,9 @@ while True:
  	except IndexError:
 		logging.warning("Bad Input Error")
 		pass
-	except sqlalchemy.exc.*:
+	except sqlalchemy.exc.DataError:
 		logging.warning("SQL Alchemy Error")
 		pass
-	else:
+	except:
  		logging.info(sys.exc_info()[0])
 		pass
