@@ -29,7 +29,8 @@ def parse_input(i):
 	args = i.split(",")
 	val_list = []
 	for arg in args:
-		val_list.append(int(arg))
+		if arg != '':
+			val_list.append(int(arg))
 	return val_list
 
 ## loads input into DB
