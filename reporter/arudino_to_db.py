@@ -76,19 +76,19 @@ logging.basicConfig(filename='arudino_recorder.log',level=logging.DEBUG)
 
 while True:
  	try:
- 		load_input(parse_input(ser.readline()))
+ 		 load_input(parse_input(ser.readline()))
  	except serial.serialutil.SerialException:
- 	 	logging.warning("Arudino Failed to Report Data")
- 	 	pass
+ 		 logging.warning("Arudino Failed to Report Data")
+ 		 pass
  	except IndexError:
-		logging.warning("Bad Input Error")
-		pass
+		 logging.warning("Bad Input Error")
+		 pass
 	except sqlalchemy.exc.DataError:
-		logging.warning("SQL Alchemy Error")
-		pass
+		 logging.warning("SQL Alchemy Error")
+		 pass
 	except KeyboardInterrupt:
-        print "You have quit the program. It will now exit. Goodbye"
-        sys.exit()
+    	 print "You have quit the program. It will now exit. Goodbye"
+         sys.exit()
 	except:
- 		logging.info(sys.exc_info()[0])
-		pass
+ 		 logging.info(sys.exc_info()[0])
+		 pass
