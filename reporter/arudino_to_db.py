@@ -45,9 +45,6 @@ def load_input(val_list):
 	session.add(reading)
 	session.commit()
 
-def signal_handler(signal, frame):
-        print 'You pressed Ctrl+C, the program will now exit!'
-        sys.exit(0)
 
 ## Main Loop
 if __name__ == '__main__':
@@ -89,6 +86,9 @@ while True:
 	except sqlalchemy.exc.DataError:
 		logging.warning("SQL Alchemy Error")
 		pass
+	except KeyboardInterrupt:
+        print "You have quit the program. It will now exit. Goodbye"
+        sys.exit()
 	except:
  		logging.info(sys.exc_info()[0])
 		pass
