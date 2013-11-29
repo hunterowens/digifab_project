@@ -2,6 +2,7 @@ import serial
 import time
 from models import UltraSonicReading
 import datetime
+import sqlalchemy
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import *
