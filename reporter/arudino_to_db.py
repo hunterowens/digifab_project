@@ -2,6 +2,7 @@ import serial
 import time
 from models import UltraSonicReading
 import datetime
+import sqlalchemy
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import *
@@ -29,7 +30,8 @@ def parse_input(i):
 	args = i.split(",")
 	val_list = []
 	for arg in args:
-		val_list.append(int(arg))
+		if arg != '':
+			val_list.append(int(arg))
 	return val_list
 
 ## loads input into DB
@@ -81,5 +83,12 @@ while True:
  	except serial.serialutil.SerialException:
  	 	logging.warning("Arudino Failed to Report Data")
  	 	pass
- 	else:
+ 	except IndexError:
+		logging.warning("Bad Input Error")
+		pass
+	except sqlalchemy.exc.DataError:
+		logging.warning("SQL Alchemy Error")
+		pass
+	except:
  		logging.info(sys.exc_info()[0])
+		pass
