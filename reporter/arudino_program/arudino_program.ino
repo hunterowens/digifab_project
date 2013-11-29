@@ -3,10 +3,10 @@
 // Author: Hunter Owens
 // Date: 24/11/2013
 
-const unsigned int pin30  = 1;
-const unsigned int pin70  = 2;
-const unsigned int pin110 = 3;
-const unsigned int pin150 = 4;
+const unsigned int pin30  = 2;
+const unsigned int pin70  = 3;
+const unsigned int pin110 = 4;
+const unsigned int pin150 = 5;
 
 //converts the reading into a cm value representing how far away the nearest
 // obj is 

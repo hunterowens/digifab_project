@@ -7,6 +7,7 @@ from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import *
 import os
 import sys, traceback
+import argparse
 
 Base = declarative_base()
 
@@ -21,17 +22,6 @@ SessionMkr = sessionmaker()
 SessionMkr.configure(bind=engine)
 session = SessionMkr()
 
-
-# ser = serial.Serial('/dev/cu.usbmodem1431', 9600)
-
-# while True:
-# 	try:
-# 		print ser.readline()
-# 		time.sleep(1)
-# 	except serial.serialutil.SerialException:
-# 		time.sleep(1)
-
-
 ## parses the input from the Arudino 
 ## assumes that the order in teh string is 30,70,110,150
 def parse_input(i):
@@ -43,7 +33,7 @@ def parse_input(i):
 
 
 def load_input(val_list):
-	reading = UltraSonicReading(room="test",location="another_test",timestamp=datetime.datetime.now(), \
+	reading = UltraSonicReading(room=room_in,location=loc,timestamp=datetime.datetime.now(), \
 		reading_30=val_list[0], \
 		reading_70=val_list[1], \
 		reading_110=val_list[2], \
@@ -55,4 +45,27 @@ def load_input(val_list):
 
 
 if __name__ == '__main__':
-	load_input(parse_input("3,5,67,24"))
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument('--room', required=True, type=str,
+    help="""
+        Name of the Room you are using
+    """)
+    parser.add_argument('--location', required=True, type=str,
+    help="""
+        Where within the room the sensor has been placed
+    """)
+    args = parser.parse_args()
+    room_in = args.room
+    loc = args.location
+
+
+ser = serial.Serial('/dev/cu.usbmodem1431', 9600)
+
+while True:
+ 	try:
+ 		load_input(parse_input(ser.readline()))
+ 	except serial.serialutil.SerialException:
+ 		pass
+ 	except 
