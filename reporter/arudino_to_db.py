@@ -6,7 +6,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import *
 import os
-import sys, traceback
+import sys, traceback, signal
 import argparse
 import logging
 
@@ -43,6 +43,9 @@ def load_input(val_list):
 	session.add(reading)
 	session.commit()
 
+def signal_handler(signal, frame):
+        print 'You pressed Ctrl+C, the program will now exit!'
+        sys.exit(0)
 
 ## Main Loop
 if __name__ == '__main__':
