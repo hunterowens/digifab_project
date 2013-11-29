@@ -49,3 +49,5 @@ docs/_build/
 # MY STUFF
 *config.yml
 *.log
+*venv
+
