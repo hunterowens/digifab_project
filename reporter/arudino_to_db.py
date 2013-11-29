@@ -8,6 +8,7 @@ from sqlalchemy.ext.declarative import *
 import os
 import sys, traceback
 import argparse
+import logging
 
 Base = declarative_base()
 
@@ -31,7 +32,7 @@ def parse_input(i):
 		val_list.append(int(arg))
 	return val_list
 
-
+## loads input into DB
 def load_input(val_list):
 	reading = UltraSonicReading(room=room_in,location=loc,timestamp=datetime.datetime.now(), \
 		reading_30=val_list[0], \
@@ -43,7 +44,7 @@ def load_input(val_list):
 	session.commit()
 
 
-
+## Main Loop
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
@@ -56,16 +57,26 @@ if __name__ == '__main__':
     help="""
         Where within the room the sensor has been placed
     """)
+    parser.add_argument('--serial', required=True, type=str,
+    help="""
+    	Where the serial port is. Should be in the form of /dev/cu.usbmodem1431 
+    	or similar
+    """)
     args = parser.parse_args()
     room_in = args.room
     loc = args.location
+    serial_port = args.serial
 
 
-ser = serial.Serial('/dev/cu.usbmodem1431', 9600)
+## Serial and Logging Stufff
+ser = serial.Serial(serial_port, 9600)
+logging.basicConfig(filename='arudino_recorder.log',level=logging.DEBUG)
 
 while True:
  	try:
  		load_input(parse_input(ser.readline()))
  	except serial.serialutil.SerialException:
- 		pass
- 	except 
+ 	 	logging.warning("Arudino Failed to Report Data")
+ 	 	pass
+ 	else:
+ 		logging.info(sys.exc_info()[0])
