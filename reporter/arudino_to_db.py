@@ -31,7 +31,7 @@ def parse_input(i):
 	val_list = []
 	for arg in args:
 		if arg != '':
-			val_list.append(int(arg))
+			val_list.append(float(arg))
 	return val_list
 
 ## loads input into DB
