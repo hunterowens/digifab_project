@@ -90,5 +90,6 @@ while True:
     	 print "You have quit the program. It will now exit. Goodbye"
          sys.exit()
 	except:
+		 print sys.exc_info()[0]
  		 logging.info(sys.exc_info()[0])
 		 pass
