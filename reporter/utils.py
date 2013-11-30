@@ -18,7 +18,7 @@ def parse_input(i):
 	return val_list
 
 ## loads input into DB
-def load_input(val_list):
+def load_input(val_list,room_in,loc):
 	reading = UltraSonicReading(room=room_in,location=loc,timestamp=datetime.datetime.now(), \
 		reading_30=val_list[0], \
 		reading_70=val_list[1], \

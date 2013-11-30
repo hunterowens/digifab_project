@@ -57,7 +57,7 @@ logging.basicConfig(filename='arudino_recorder.log',level=logging.DEBUG)
 
 while True:
  	try:
- 		 load_input(parse_input(ser.readline()))
+ 		 load_input(parse_input(ser.readline()),room_in,loc)
  	except serial.serialutil.SerialException:
  		 logging.warning("Arudino Failed to Report Data")
  		 pass
