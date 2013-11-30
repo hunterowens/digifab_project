@@ -2,7 +2,10 @@ import argparse
 import serial
 
 if __name__ == '__main__':
-	parser.add_argument('--serial', required=True, type=str,
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument('--serial', required=True, type=str,
     help="""
     	Where the serial port is. Should be in the form of /dev/cu.usbmodem1431 
     	or similar
