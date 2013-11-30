@@ -9,11 +9,11 @@ const unsigned int pin150 = 5;
 
 //converts the reading into a cm value representing how far away the nearest
 // obj is 
-float convert(float val) {
-  float res;
-  res = (val / 147) * 2.54;
-  return res;
-}
+//double convert(double val) {
+  //double res;
+  //res = (val / 147) * 2.54;
+  //return res;
+//}
 
 const unsigned int numReadings = 10; // number of readings per second 
 
@@ -22,12 +22,14 @@ void setup() {
   Serial.begin(9600);
 }
 
+
+// res vars
+double reading30,reading70,reading110,reading150;
+double sum30, sum70, sum110, sum150;
+double avg30, avg70, avg110, avg150;
+
 void loop() {
-  // res vars
-  float reading30[numReadings],reading70[numReadings],reading110[numReadings],reading150[numReadings];
-  float res30[numReadings],res70[numReadings],res110[numReadings],res150[numReadings];
-  float sum30, sum70, sum110, sum150;
-  float avg30, avg70, avg110, avg150;
+
   
   //set up the pins for input
   pinMode(pin30, INPUT);
@@ -38,24 +40,17 @@ void loop() {
   //record the readings and then average them. 
   for (int i = 0; i < numReadings; i++) {
     //take the readings
-    reading30[i] = pulseIn(pin30,HIGH);
-    reading70[i] = pulseIn(pin70,HIGH);
-    reading110[i] = pulseIn(pin110,HIGH);
-    reading150[i] = pulseIn(pin150,HIGH);
+    reading30 = pulseIn(pin30,HIGH);
+    reading70 = pulseIn(pin70,HIGH);
+    reading110 = pulseIn(pin110,HIGH);
+    reading150 = pulseIn(pin150,HIGH);
     //convert the readings
-    res30[i] = convert(reading30[i]);
-    res70[i] = convert(reading70[i]);
-    res110[i] = convert(reading110[i]);
-    res150[i] = convert(reading150[i]);
+    sum30 += ((reading30 / 147) * 2.54);
+    sum70 += ((reading70 / 147) * 2.54);
+    sum110 += ((reading110 / 147) * 2.54);
+    sum150 += ((reading150 / 147) * 2.54);
     // wait to take next reading number of readings
     delay(1000/numReadings);  
-   }
-   //Sum the readings
-   for (int j = 0; j < numReadings; j++) {
-     sum30 += res30[j];
-     sum70 += res70[j];
-     sum110 += res110[j];
-     sum150 += res150[j];
    }
    
    // Avg the readings
@@ -74,6 +69,12 @@ void loop() {
    Serial.print(avg110);
    Serial.print(",");
    Serial.println(avg150);
+   
+   // reset the variables to 0
+   // res vars
+  reading30 = reading70 = reading110 = reading150 = 0;
+  sum30 = sum70 = sum110 = sum150 = 0;
+  avg30 = avg70 = avg110 = avg150 = 0;
 }
 
   
