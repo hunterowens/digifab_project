@@ -6,6 +6,21 @@ import sqlalchemy
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import *
+import os
+
+Base = declarative_base()
+
+db_user = os.environ.get("FABDB_USER")
+db_url = os.environ.get("FABDB_URL")
+db_pw = os.environ.get("FABDB_PW")
+db_db = os.environ.get("FABDB_DB")
+
+engine = create_engine("postgresql://"+db_user+":"+db_pw+"@"+db_url+"/"+db_db)
+
+SessionMkr = sessionmaker()
+SessionMkr.configure(bind=engine)
+session = SessionMkr()
+
 
 ## parses the input from the Arudino 
 ## assumes that the order in teh string is 30,70,110,150
