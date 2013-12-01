@@ -18,5 +18,6 @@ rs <- dbSendQuery(con, "select * from ultrasonic WHERE room = 'HAL' LIMIT 10;") 
 
 recorded_data <- fetch(rs,n=-1)
 
-
+xfit <- lm(x ~ reading30+reading70+reading110+reading150,data=training_data)
+yfit <- lm(y ~ reading30+reading70+reading110+reading150,data=training_data)
 
