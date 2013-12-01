@@ -13,11 +13,19 @@ con <- dbConnect(drv,
 	dbname=con_vars["FABDB_DB"],
 	user=con_vars["FABDB_USER"],
 	password=con_vars["FABDB_PW"],
-	port=5432,host=con_vars["FABDB_URL"])   ## Open a connection 
-rs <- dbSendQuery(con, "select * from ultrasonic WHERE room = 'HAL' LIMIT 10;")   ## Submits a statement
+	port=5432,
+	host=con_vars["FABDB_URL"])   ## Open a connection 
+rs <- dbSendQuery(con, "SELECT * FROM ultrasonic WHERE room = 'HAL' LIMIT 10;")   ## Submits a statement
 
 recorded_data <- fetch(rs,n=-1)
+print(recorded_data)
 
-xfit <- lm(x ~ reading30+reading70+reading110+reading150,data=training_data)
-yfit <- lm(y ~ reading30+reading70+reading110+reading150,data=training_data)
+xfit <- lm(x ~ reading_30+reading_70+reading_110+reading_150,data=training_data)
+yfit <- lm(y ~ reading_30+reading_70+reading_110+reading_150,data=training_data)
 
+x_predictions <- predict(xfit,recorded_data)
+y_predcitions <- predict(yfit,recorded_data)
+
+predictions <- cbind(x_predictions,y_predcitions)
+
+write.table(predictions,"./predictions.csv",sep=",")
