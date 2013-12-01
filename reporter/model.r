@@ -1,7 +1,10 @@
+#A script to generate data for the records with an X-Y record
+
 library("RPostgreSQL")
 
 training_data <- read.csv('./training_data.csv',header=T)
 
+#get env Variables
 con_vars = Sys.getenv(c("FABDB_USER", "FABDB_URL", "FABDB_PW", "FABDB_DB"))
 
 
