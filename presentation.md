@@ -134,10 +134,11 @@ y_predcitions <- predict(yfit,recorded_data)
 ## Futher Work
 
 - Better Training Data
-- A less noisy room
-- Different Sensors (Kinect?)
-- Better Model
+- 	A less noisy room
+- 	Different Sensors (Kinect?)
+- 	Better Model
 
-! 
+!
 
 ## Questions?
+- Project Repo: http://github.com/hunterowens/digifab_project
