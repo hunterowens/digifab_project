@@ -81,7 +81,8 @@ reading_150 | 140
 ## The Model [Assumptions]
 
 - We can use training data to produce X and Y values for where the nearest objects are
-- So let's generate training data in an empty room. 
+- So let's generate training data in an empty room.  
+- X & Y are independent of each other. 
 
 ```
 x,y,reading_30,reading_70,reading_110,reading_150
@@ -91,3 +92,52 @@ x,y,reading_30,reading_70,reading_110,reading_150
 !
 
 ## Graphed
+
+<img src="training_graph.png" width="500px" style="display: block;
+    margin-left: auto;
+    margin-right: auto;"/>
+    
+!
+
+## #BadData
+
+- This is bad training data. So predictions we make will be bad.
+- But…
+- Linear Regressions should work, since the relationship between the sensor readings and where the motion is occuring is linear.
+
+!
+
+## Model [Code]
+
+```
+//fit the sample data
+xfit <- lm(x ~ reading_30+reading_70+
+	reading_110+reading_150,data=training_data)
+yfit <- lm(y ~ reading_30+reading_70+
+	reading_110+reading_150,data=training_data)
+
+//make predictions
+x_predictions <- predict(xfit,recorded_data)
+y_predcitions <- predict(yfit,recorded_data)
+```
+
+!
+
+## Predictions, Graphed
+
+<img src="predictions_graph.png" width="500px" style="display: block;
+    margin-left: auto;
+    margin-right: auto;"/>
+    
+!
+
+## Futher Work
+
+- Better Training Data
+- A less noisy room
+- Different Sensors (Kinect?)
+- Better Model
+
+! 
+
+## Questions?
