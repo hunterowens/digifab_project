@@ -37,20 +37,57 @@
 
 ## The Build
 
-- You can print out this presentation from PC browser.
-- The recomended configuration:
- - Layout - Landscape
- - Margins - No margin
- - Options - Enable to printing background colors
+- Use the sensors to create a good coverage map
+- Each sesor has a rougly 3 ft cone sonic sensor
+- Arrange each of the 4 Sensors at 30,70,110,150 degree offset angles
+
+<img src="./model.png" width="400px" style="display: block;
+    margin-left: auto;
+    margin-right: auto;">
 
 !
 
-## The Software
+## The Build, Pt 2:
 
-- If you print out the presentation as a PDF file, then you can upload it to "slideshare.com".
+- Sensor are connected to an arudino, which reads them into a Raspberry Pi, which in turn, reads the results into a **PostgreSQL** DB in the Amazon Cloud.
+
+<img src="build.jpg" width="400px" style="display: block;
+    margin-left: auto;
+    margin-right: auto;">
+
+- *Pi not pictured*
+
 
 !
 
-# Be happy! :)
+## The Data
 
-> _Rather than fighting with keynote or powerpoint **for hours**, I can whip up a presentation in minutes using markdown._
+```
+id          | 445
+room        | HAL
+location    | East_Wall
+timestamp   | 2013-11-30 20:06:26.138436
+reading_30  | 175
+reading_70  | 277
+reading_110 | 156
+reading_150 | 140
+
+```
+- *A reading represents the distance away from the sensor, in CM that the nearest object is*
+- **Repeat that 60,000 times (as of Monday )
+
+!
+
+## The Model [Assumptions]
+
+- We can use training data to produce X and Y values for where the nearest objects are
+- So let's generate training data in an empty room. 
+
+```
+x,y,reading_30,reading_70,reading_110,reading_150
+96.0,0.0,425.27, 132.52, 139.64, 127.64
+```
+
+!
+
+## Graphed
