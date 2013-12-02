@@ -1,6 +1,7 @@
 #A script to generate data for the records with an X-Y record
 
 library("RPostgreSQL")
+library("ggplot2")
 
 training_data <- read.csv('./training_data.csv',header=T)
 
