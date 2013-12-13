@@ -17,13 +17,22 @@ The sensors range from 6-254 inches and report back a single reading, that is th
 `/arudino_program` contains the program to load onto an arudino to generate the data. Make sure to change the pins to reflect the correct values for your setup.
 
 ## Usage / Data Collection
+=============
 
 1. Assemble the base and wire the sensors to an aruduino. Hook the arudino into a computer with an internet connection. I recommend a raspberry pi or beagle board. 
 2. Setup youre environment - set env vars for the database connection and determine the location of the serial port on your machine. It is typically `/dev/ttySOMETHING`. 
 3. Use a virtualenv to install the requirements in `scripts/requirements.txt`. 
 4. Run `models.py -c create` to create the database tables.
-4. Build a training dataset. Empty the room and lay down a grid (I used masking tape). Have one person stand at points and the run the `generate_sample_data.py --x [num] --y [num] --serial` script to generate a good set of training data. The X and Y values should refer to where the person is in teh room, with the mount being [0,0] and Y extending in the positive direction. 
-5. Run the `arudino_to_db.py` script to start collecting data. 
+5. Build a training dataset. Empty the room and lay down a grid (I used masking tape). Have one person stand at points and the run the `generate_sample_data.py --x [num] --y [num] --serial` script to generate a good set of training data. The X and Y values should refer to where the person is in teh room, with the mount being [0,0] and Y extending in the positive direction. 
+6. Run the `arudino_to_db.py` script to start collecting data. 
+
 
 ## Model / Graphing Data
+=========
 This section is under active development. Please check back again later. 
+## License
+=========
+MIT - See LICENSE for Details.
+## Contact
+==========
+This project came about because Ian Foster and Rick Stevens let me play around with sensors and an arudino. Questions can be directed to howens@uchicago.edu. 
