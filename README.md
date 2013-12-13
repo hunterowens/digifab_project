@@ -17,8 +17,6 @@ The sensors range from 6-254 inches and report back a single reading, that is th
 `/arudino_program` contains the program to load onto an arudino to generate the data. Make sure to change the pins to reflect the correct values for your setup.
 
 ## Usage / Data Collection
-=============
-
 1. Assemble the base and wire the sensors to an aruduino. Hook the arudino into a computer with an internet connection. I recommend a raspberry pi or beagle board. 
 2. Setup youre environment - set env vars for the database connection and determine the location of the serial port on your machine. It is typically `/dev/ttySOMETHING`. 
 3. Use a virtualenv to install the requirements in `scripts/requirements.txt`. 
@@ -28,11 +26,10 @@ The sensors range from 6-254 inches and report back a single reading, that is th
 
 
 ## Model / Graphing Data
-=========
 This section is under active development. Please check back again later. 
+
 ## License
-=========
 MIT - See LICENSE for Details.
+
 ## Contact
-==========
 This project came about because Ian Foster and Rick Stevens let me play around with sensors and an arudino. Questions can be directed to howens@uchicago.edu. 
