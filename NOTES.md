@@ -98,7 +98,9 @@ To start, generating a training dataset is helpful
 <img src="https://github.com/hunterowens/digifab_project/raw/gh-pages/training_graph.png" width="500px" style="display: block;
     margin-left: auto;
     margin-right: auto;"/>
-    *** 0,0 is the location of the sensor mount. Distance is in inches. 
+	    
+*0,0 is the location of the sensor mount. Distance is in inches.*
+
     
 This is a bad training dataset, seeing as it only influences the 30/70 degree sensors while introducing the 110,150 ones as noise. Yet, here is the model.
 
@@ -113,11 +115,22 @@ y_predcitions <- predict(yfit,recorded_data)
 ```
 
 This model yields this graph.
+
 <img src="https://github.com/hunterowens/digifab_project/raw/gh-pages/predictions_graph.png" width="500px" style="display: block;
     margin-left: auto;
     margin-right: auto;"/>
-    *** 0,0 is the location of the sensor mount. Distance is in inches. 
+
+*0,0 is the location of the sensor mount. Distance is in inches.*
     
 However, what is interesting is the clustering of predictions right in front of the sensor. Most predictions cluster because very little activity was happening the in HAL. 
 
 ## Future Work:
+There are several directions in which I'd like to take the project. 
+
+1) Improve the Sensors and Improve the Model. This option is basically about following through a bit more with the current setup. 
+
+2) Use a Less Noisy Room. Would Generate Better Data
+
+3) Know that I understand quite a bit more about how distance sensing works by working with these low level sensor work, I would be interested in using a Kinect or Asus ActionX2 to produce better data and cooler visualizations. 
+
+This project has been all about using embedded small systems that are now possible for cheap given some of the innovations discussed in the course. The idea of embedded systems telling us how we interact with the built-environment is a problem that I think will be investegated quite a lot in the near future. 
